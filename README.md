@@ -1,5 +1,9 @@
 # srping boot项目
 
+#### 2020-11-05 17:30
+- 集成mybatis plus
+- 数据源druid
+
 #### 2020-11-05 15:40
 - 添加knife4j(swagger2)
 - 修改springboot版本为2.3.1
