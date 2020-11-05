@@ -1,7 +1,8 @@
 # srping boot项目
 
-#### 2020-11-05 17:30
+#### 2020-11-05 17:50
 - 集成mybatis plus
+- mybatisplus generator
 - 数据源druid
 
 #### 2020-11-05 15:40
