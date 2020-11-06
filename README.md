@@ -1,8 +1,13 @@
 # srping boot项目
 
-#### 2020-11-05 17:30
+#### 2020-11-06 17:00
+- 引入redis配置
+
+#### 2020-11-05 17:50
 - 集成mybatis plus
+- mybatisplus generator
 - 数据源druid
+- mybatis plus 分页
 
 #### 2020-11-05 15:40
 - 添加knife4j(swagger2)
