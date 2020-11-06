@@ -19,7 +19,7 @@ public class GenerationUtil {
 
     public static void main(String[] args) {
         // 对应数据库名
-        String[] tabList = new String[]{"PM_TD_REGISTER_USER"};
+        String[] tabList = new String[]{"test"};
         String author = "liouwb";
 
         AutoGenerator mpg = new AutoGenerator();

@@ -4,6 +4,7 @@
 - 集成mybatis plus
 - mybatisplus generator
 - 数据源druid
+- mybatis plus 分页
 
 #### 2020-11-05 15:40
 - 添加knife4j(swagger2)

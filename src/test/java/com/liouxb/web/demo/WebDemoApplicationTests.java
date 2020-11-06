@@ -1,12 +1,11 @@
 package com.liouxb.web.demo;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liouxb.web.demo.mapper.TestMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class WebDemoApplicationTests {
@@ -19,9 +18,13 @@ class WebDemoApplicationTests {
 
     @Test
     public void testSelect() {
-        QueryWrapper<com.liouxb.web.demo.domain.Test> queryWrapper = new QueryWrapper<>();
-        List<com.liouxb.web.demo.domain.Test> userList = testMapper.selectList(queryWrapper);
+        Page<com.liouxb.web.demo.domain.Test> page=new Page<>();
+        page.setCurrent(1);
+        page.setSize(2);
 
-        userList.forEach(System.out::println);
+        IPage<com.liouxb.web.demo.domain.Test> tests = testMapper.selectTests(page);
+
+        tests.getRecords().forEach(System.out::println);
     }
+
 }
