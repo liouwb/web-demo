@@ -1,5 +1,8 @@
 # srping boot项目
 
+#### 2020-11-06 17:00
+- 引入redis配置
+
 #### 2020-11-05 17:50
 - 集成mybatis plus
 - mybatisplus generator
