@@ -89,6 +89,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--引入自定义的starter-->
+        <dependency>
+            <groupId>com.liouxb</groupId>
+            <artifactId>spring-boot-starter-custom</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

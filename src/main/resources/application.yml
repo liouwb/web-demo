@@ -28,3 +28,7 @@ spring:
 
 enable:
   swagger: true
+
+com:
+  liouxb:
+    customPropertiesStr: first-starter
