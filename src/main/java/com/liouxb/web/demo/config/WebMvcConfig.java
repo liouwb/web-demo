@@ -1,10 +1,12 @@
 package com.liouxb.web.demo.config;
 
+import com.liouxb.web.demo.config.interceptor.MyInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -14,7 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * springboot2.x 之后继承WebMvcConfigurationSupport类
  */
 @Configuration
-public class MessageConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig extends WebMvcConfigurationSupport {
+
     @Bean
     public ResourceBundleMessageSource getMessageSource() {
         ResourceBundleMessageSource rbms = new ResourceBundleMessageSource();
@@ -49,5 +52,16 @@ public class MessageConfig extends WebMvcConfigurationSupport {
                 "classpath:/META-INF/resources/webjars/");
 
         super.addResourceHandlers(registry);
+    }
+
+    /**
+     * 添加拦截器
+     */
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        // 添加拦截器
+        registry.addInterceptor(new MyInterceptor());
+
+        super.addInterceptors(registry);
     }
 }
