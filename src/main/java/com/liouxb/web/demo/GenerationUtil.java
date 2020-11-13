@@ -52,16 +52,16 @@ public class GenerationUtil {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        // 表名生成策略
+        // 表名生成策略 下划线转驼峰
         strategy.setNaming(NamingStrategy.underline_to_camel);
-        // 需要生成的表
 
+        // 需要生成的表
         strategy.setInclude(tabList);
         mpg.setStrategy(strategy);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.liouxb.web");
+        pc.setParent("com.liouxb.web.demo");
         pc.setController("controller");
         pc.setEntity("domain");
         pc.setService("service");
