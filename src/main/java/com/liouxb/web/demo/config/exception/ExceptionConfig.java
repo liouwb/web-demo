@@ -2,11 +2,14 @@ package com.liouxb.web.demo.config.exception;
 
 import com.liouxb.web.demo.entity.resp.BaseResp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.Objects;
 
 /**
  * @author liouwb
@@ -15,6 +18,17 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class ExceptionConfig {
 
+
+    /**
+     * 没有请求体的校验
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseBody
+    public BaseResp requestParameterException(HttpMessageNotReadableException e) {
+        log.error(e.getMessage());
+        return new BaseResp(false, "fail", 500, "请求参数不能为空");
+    }
+
     /**
      * 请求参数校验不通过
      */
@@ -22,7 +36,8 @@ public class ExceptionConfig {
     @ResponseBody
     public BaseResp requestParameterException(MethodArgumentNotValidException e) {
         log.error(e.getMessage());
-        return new BaseResp(false, "fail", 500, e.getBindingResult().getFieldError().getDefaultMessage());
+
+        return new BaseResp(false, "fail", 500, Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());
     }
 
     /**
@@ -45,7 +60,6 @@ public class ExceptionConfig {
         log.error(e.getMessage());
 
         return new BaseResp(false, "fail", 500, e.getMessage().split(":")[0]);
-
     }
 
     /**
