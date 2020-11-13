@@ -7,6 +7,7 @@ spring:
   # datasource
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
+    # mysql-connector-java 6 以前使用com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: test
@@ -23,8 +24,6 @@ spring:
           max-active: 100
           max-idle: 8
           max-wait: -1
-
-
 
 enable:
   swagger: true
