@@ -28,6 +28,13 @@ spring:
 enable:
   swagger: true
 
+# 自定义starter配置文件
 com:
   liouxb:
     customPropertiesStr: first-starter
+
+# MyBatis-plus
+mybatis-plus:
+  # 配置*.mapper.xml文件位置，不然找不到
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.liouxb.web.demo.domain
