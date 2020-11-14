@@ -38,3 +38,12 @@ mybatis-plus:
   # 配置*.mapper.xml文件位置，不然找不到
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.liouxb.web.demo.domain
+
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: e:\logs\web-demo
+  # 配置root级别
+  root:
+    level: debug
