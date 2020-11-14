@@ -12,7 +12,6 @@ spring:
     url: jdbc:mysql://47.93.181.13:3306/wpms_test?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: wpms_test
     password: wpms_test@123456
-
     # redis
     redis:
       database: 1
@@ -38,6 +37,9 @@ mybatis-plus:
   # 配置*.mapper.xml文件位置，不然找不到
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.liouxb.web.demo.domain
+  # 配置控制台打印完整带参数SQL语句
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 日志配置
 logging:
@@ -46,7 +48,7 @@ logging:
     path: e:\logs\web-demo
   # 配置root级别，logback-spring.xml文件获取
   root:
-    level: debug
+    level: info
   # 配置相应目录下输入日志的级别
   level:
     com.liouxb.web.demo.service.impl: info
