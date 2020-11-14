@@ -25,6 +25,7 @@ public class ExceptionConfig {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
     public BaseResp requestParameterException(HttpMessageNotReadableException e) {
+        log.info(e.getMessage());
         log.error(e.getMessage());
         return new BaseResp(false, "fail", 500, "请求参数不能为空");
     }
@@ -35,6 +36,7 @@ public class ExceptionConfig {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public BaseResp requestParameterException(MethodArgumentNotValidException e) {
+        log.info(e.getMessage());
         log.error(e.getMessage());
 
         return new BaseResp(false, "fail", 500, Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());

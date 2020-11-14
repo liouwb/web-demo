@@ -42,10 +42,11 @@
     </appender>
 
     <!--设置不同目录下，日志打印级别-->
-    <logger name="java.sql" level="DEBUG"/>
-    <logger name="com.liouxb.web.demo.mapper" level="DEBUG"></logger>
-    <logger name="com.liouxb.web.demo.service.impl" level="INFO"></logger>
-    <logger name="com.liouxb.web.demo.controller" level="INFO"></logger>
+    <!--与application下logging.level配置效果一样，application.yml配置优先级高于xml文件-->
+<!--    <logger name="java.sql" level="DEBUG"/>-->
+<!--    <logger name="com.liouxb.web.demo.mapper" level="DEBUG"></logger>-->
+<!--    <logger name="com.liouxb.web.demo.service.impl" level="INFO"></logger>-->
+<!--    <logger name="com.liouxb.web.demo.controller" level="INFO"></logger>-->
 
     <!--    &lt;!&ndash;不同环境下的配置&ndash;&gt;-->
     <!--    <springProfile name="dev">-->

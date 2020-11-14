@@ -9,9 +9,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     # mysql-connector-java 6 以前使用com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: test
-    password: test@123456
+    url: jdbc:mysql://47.93.181.13:3306/wpms_test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: wpms_test
+    password: wpms_test@123456
 
     # redis
     redis:
@@ -44,6 +44,12 @@ logging:
   config: classpath:logback-spring.xml
   file:
     path: e:\logs\web-demo
-  # 配置root级别
+  # 配置root级别，logback-spring.xml文件获取
   root:
     level: debug
+  # 配置相应目录下输入日志的级别
+  level:
+    com.liouxb.web.demo.service.impl: info
+    com.liouxb.web.demo.mapper: debug
+    java.sql: debug
+    com.liouxb.web.demo.config.exception: error
