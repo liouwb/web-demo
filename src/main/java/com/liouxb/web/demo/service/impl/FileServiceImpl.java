@@ -8,8 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.Objects;
 
 /**
@@ -109,9 +109,66 @@ public class FileServiceImpl implements FileService {
      * 文件下载
      */
     @Override
-    public BaseResp downFile(HttpServletRequest request, HttpServletResponse response) {
+    public BaseResp downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        // 1.获取文件下载的路径
+        String path = "e:\\temp\\";
+        // 2.获取下载文件的名称
+        File file = new File(path, fileName);
 
-        return null;
+        // 头信息设置
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        // 响应类型 与编码设置 下载文件的名字 URLEncoder编码来处理中文乱码
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+
+        // 文件流
+        FileInputStream fis = null;
+        // 缓冲流
+        BufferedInputStream bis = null;
+        // 输出流
+        OutputStream os;
+        try {
+            // 常见文件流
+            fis = new FileInputStream(file);
+            bis = new BufferedInputStream(fis);
+
+            byte[] buffer = new byte[1024];
+
+            // 获取输出流
+            os = response.getOutputStream();
+
+            int i;
+            // 循环写入数据
+            while ((i = bis.read(buffer)) != -1) {
+                os.write(buffer, 0, i);
+                os.flush();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return new BaseResp(false, "fail", 500, "下载文件失败");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            new BaseResp(false, "fail", 500, "下载文件失败");
+        } finally {
+            // 关闭流
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return new BaseResp(true, "success", 200, "下载文件成功");
     }
 
 }

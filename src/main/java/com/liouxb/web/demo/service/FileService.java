@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 
 /**
  * @author liouwb
@@ -15,5 +16,5 @@ public interface FileService {
 
     BaseResp multiUpload(MultipartFile[] files);
 
-    BaseResp downFile(HttpServletRequest request, HttpServletResponse response);
+    BaseResp downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException;
 }

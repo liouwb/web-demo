@@ -5,18 +5,18 @@ import com.liouxb.web.demo.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author liouwb
  */
 @RestController
-@RequestMapping(value = "file", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "file")
 @Api(tags = "文件管理")
 public class FileController {
     @Autowired
@@ -36,11 +36,15 @@ public class FileController {
         return fileService.multiUpload(files);
     }
 
-    @GetMapping("/downFile/{fileName}")
+    /**
+     * 下载文件
+     * @PathVariable 传入参数不能有. param:.+ 表示来处理有.的参数
+     */
+    @GetMapping(value = "/downFile/{fileName:.+}")
     @ApiOperation(value = "文件下载")
-    public BaseResp downFile(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
+    public BaseResp downFile(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        return fileService.downFile(request, response);
+        return fileService.downFile(fileName, request, response);
     }
 
 }
