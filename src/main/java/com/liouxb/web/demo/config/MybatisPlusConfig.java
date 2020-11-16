@@ -20,6 +20,7 @@ public class MybatisPlusConfig {
         PaginationInterceptor page = new PaginationInterceptor();
         //设置方言类型
         page.setDialectType("mysql");
+
         return page;
     }
 }

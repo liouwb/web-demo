@@ -128,7 +128,7 @@ public class FileServiceImpl implements FileService {
         // 输出流
         OutputStream os;
         try {
-            // 常见文件流
+            // 创建文件流
             fis = new FileInputStream(file);
             bis = new BufferedInputStream(fis);
 
