@@ -23,6 +23,13 @@ spring:
           max-active: 100
           max-idle: 8
           max-wait: -1
+  # 上传文件大小设置
+  servlet:
+    multipart:
+      # 单个文件大小限制10M
+      max-file-size: 10MB
+      # 单次请求限制30M
+      max-request-size: 30MB
 
 enable:
   swagger: true
