@@ -1,5 +1,6 @@
 package com.liouxb.web.demo.service.impl;
 
+import com.liouxb.web.demo.config.exception.MyException;
 import com.liouxb.web.demo.entity.resp.BaseResp;
 import com.liouxb.web.demo.service.FileService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,6 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class FileServiceImpl implements FileService {
-
     /**
      * 上传单个文件
      *
@@ -109,7 +109,7 @@ public class FileServiceImpl implements FileService {
      * 文件下载
      */
     @Override
-    public BaseResp downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public void downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         // 1.获取文件下载的路径
         String path = "e:\\temp\\";
         // 2.获取下载文件的名称
@@ -145,11 +145,11 @@ public class FileServiceImpl implements FileService {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return new BaseResp(false, "fail", 500, "下载文件失败");
+            throw new MyException("下载文件失败");
 
         } catch (IOException e) {
             e.printStackTrace();
-            new BaseResp(false, "fail", 500, "下载文件失败");
+            throw new MyException("下载文件失败");
         } finally {
             // 关闭流
             if (bis != null) {
@@ -167,8 +167,6 @@ public class FileServiceImpl implements FileService {
                 }
             }
         }
-
-        return new BaseResp(true, "success", 200, "下载文件成功");
     }
 
 }

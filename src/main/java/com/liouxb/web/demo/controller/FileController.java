@@ -38,13 +38,14 @@ public class FileController {
 
     /**
      * 下载文件
+     *
      * @PathVariable 传入参数不能有. param:.+ 表示来处理有.的参数
      */
     @GetMapping(value = "/downFile/{fileName:.+}")
     @ApiOperation(value = "文件下载")
-    public BaseResp downFile(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void downFile(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        return fileService.downFile(fileName, request, response);
+        fileService.downFile(fileName, request, response);
     }
 
 }

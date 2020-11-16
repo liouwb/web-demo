@@ -16,5 +16,5 @@ public interface FileService {
 
     BaseResp multiUpload(MultipartFile[] files);
 
-    BaseResp downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException;
+    void downFile(String fileName, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException;
 }
