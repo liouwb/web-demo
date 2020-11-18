@@ -62,7 +62,7 @@ public class FileServiceImpl implements FileService {
     /**
      * 多个文件上传
      *
-     * @param files
+     * @param files 文件名为files的文件列表
      * @return
      */
     @Override
@@ -143,13 +143,10 @@ public class FileServiceImpl implements FileService {
                 os.write(buffer, 0, i);
                 os.flush();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new MyException("下载文件失败");
-
         } catch (IOException e) {
             e.printStackTrace();
             throw new MyException("下载文件失败");
+
         } finally {
             // 关闭流
             if (bis != null) {
@@ -168,5 +165,4 @@ public class FileServiceImpl implements FileService {
             }
         }
     }
-
 }
