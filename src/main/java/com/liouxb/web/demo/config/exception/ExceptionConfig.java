@@ -69,7 +69,7 @@ public class ExceptionConfig {
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public BaseResp Exception(Exception e) {
+    public BaseResp exception(Exception e) {
         log.error(e.getMessage());
 
         return new BaseResp(false, "fail", 500, e.getMessage().split(":")[0]);
@@ -80,7 +80,7 @@ public class ExceptionConfig {
      */
     @ExceptionHandler(MyException.class)
     @ResponseBody
-    public BaseResp Exception(MyException e) {
+    public BaseResp myException(MyException e) {
         log.error(e.getMessage());
 
         return new BaseResp(false, "fail", 500, e.getMessage().split(":")[0]);
