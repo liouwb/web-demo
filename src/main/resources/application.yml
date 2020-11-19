@@ -30,6 +30,10 @@ spring:
       max-file-size: 10MB
       # 单次请求限制30M
       max-request-size: 30MB
+  # mvc 默认集成jackson
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
 
 enable:
   swagger: true
