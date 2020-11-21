@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
   servlet:
     context-path: /web-demo
 
@@ -66,3 +66,5 @@ logging:
     com.liouxb.web.demo.mapper: debug
     java.sql: debug
     com.liouxb.web.demo.config.exception: error
+
+# spring-security
