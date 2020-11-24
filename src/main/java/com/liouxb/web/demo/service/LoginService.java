@@ -7,7 +7,7 @@ import com.liouxb.web.demo.entity.resp.BaseResp;
  * @author liouwb
  */
 public interface LoginService {
-    String login(LoginReq req);
+    BaseResp login(LoginReq req);
 
     BaseResp showCurrentUser();
 }

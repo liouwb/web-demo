@@ -1,11 +1,15 @@
 package com.liouxb.web.demo.service.impl;
 
+import com.liouxb.web.demo.config.security.CustomUserDetailsService;
 import com.liouxb.web.demo.entity.req.LoginReq;
 import com.liouxb.web.demo.entity.resp.BaseResp;
 import com.liouxb.web.demo.service.LoginService;
+import com.liouxb.web.demo.utils.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,13 +18,22 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class LoginServiceImpl implements LoginService {
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+
     @Override
-    public String login(LoginReq req) {
-        log.info("1234");
+    public BaseResp login(LoginReq req) {
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(req.getUsername());
+
+        final String token = jwtTokenUtil.createJwtToken(req);
+
+        log.info("x-token:{}", token);
 
 
-
-        return "登录成功";
+        return new BaseResp(true, "success", 200, token);
     }
 
     /**

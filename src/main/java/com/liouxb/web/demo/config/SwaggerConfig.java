@@ -5,11 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMethod;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -19,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author liouwb
@@ -49,6 +53,8 @@ public class SwaggerConfig {
 
                 // 页面显示信息
                 .apiInfo(apiInfo())
+                // 设置header token信息
+                .globalOperationParameters(setHeaderToken())
                 .enable(enableSwagger)
 
                 // 设置全局自定义异常消息返回
@@ -70,5 +76,16 @@ public class SwaggerConfig {
                 "",
                 "",
                 new ArrayList<>());
+    }
+
+    /**
+     * 设置header token信息
+     */
+    private List<Parameter> setHeaderToken() {
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        tokenPar.name("x-token").description("token").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        pars.add(tokenPar.build());
+        return pars;
     }
 }

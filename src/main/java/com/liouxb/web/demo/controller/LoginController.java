@@ -21,12 +21,13 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("login")
+    @PostMapping("doLogin")
     @ApiOperation(value = "登录接口")
-    public String login(@RequestBody LoginReq req) {
+    public BaseResp login(@RequestBody LoginReq req) {
 
         return loginService.login(req);
     }
+
 
     @GetMapping("showCurrentUser")
     @ApiOperation(value = "获取登录用户信息")
