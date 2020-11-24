@@ -16,6 +16,10 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl implements LoginService {
     @Override
     public String login(LoginReq req) {
+        log.info("1234");
+
+
+
         return "登录成功";
     }
 

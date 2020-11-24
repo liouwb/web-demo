@@ -50,11 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 // login/** 路径，需要拥有admin权限才可以访问
-//                .antMatchers("/web-demo/login/**")
-//                .hasRole("ADMIN")
+                .antMatchers("/login/**")
+                .hasRole("ADMIN")
 
-                .antMatchers("/test/**")
-                .access("hasAnyRole('ADMIN','USER')")
+//                .antMatchers("/test/**")
+//                .access("hasAnyRole('ADMIN','DB')")
 
                 // 不需要权限就可以访问
                 .antMatchers("/login/success")
@@ -65,8 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
 
-                // 登录
+                // 表单登录
                 .formLogin()
+                // 登录页
+//                .loginPage("/index")
+                // 登录表单处理请求
+                .loginProcessingUrl("/login")
+                // 登录成功页
+                .loginProcessingUrl("/success")
                 .permitAll()
                 .and()
 
@@ -84,10 +90,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 静态资源不拦截
      *
      * @param web
-     * @throws Exception
      */
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         // 设置拦截忽略文件夹，可以对静态资源放行
         web.ignoring().antMatchers("/css/**", "/js/**");
     }

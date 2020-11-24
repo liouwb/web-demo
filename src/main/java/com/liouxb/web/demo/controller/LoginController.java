@@ -38,7 +38,7 @@ public class LoginController {
     @GetMapping("success")
     @ApiOperation(value = "登录成功页面")
     // admin权限可以访问
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public String success() {
 
         return "登录成功";

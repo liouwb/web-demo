@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 public class LoginReq {
     @NotNull(message = "{name.notnull}")
     @ApiModelProperty(value = "姓名")
-    private String userId;
+    private String username;
 
     @NotNull(message = "密码不能为空")
     @ApiModelProperty(value = "密码")
-    private String pwd;
+    private String password;
 }

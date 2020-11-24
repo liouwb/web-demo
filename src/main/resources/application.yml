@@ -59,7 +59,7 @@ logging:
     path: e:\logs\web-demo
   # 配置root级别，logback-spring.xml文件获取
   root:
-    level: info
+    level: debug
   # 配置相应目录下输入日志的级别
   level:
     com.liouxb.web.demo.service.impl: info

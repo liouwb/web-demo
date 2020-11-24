@@ -39,9 +39,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserRole userRole2 = new UserRole("456", "DB");
 
 
-        users.put(userInfo.getUserName(), userInfo);
-        users.put(userInfo1.getUserName(), userInfo1);
-        users.put(userInfo2.getUserName(), userInfo2);
+        users.put(userInfo.getUsername(), userInfo);
+        users.put(userInfo1.getUsername(), userInfo1);
+        users.put(userInfo2.getUsername(), userInfo2);
 
         userRoleMap.put(userRole.getId(), userRole);
         userRoleMap.put(userRole1.getId(), userRole1);
@@ -60,9 +60,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         // 添加权限集
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(userRole.getName()));
+        // 角色权限需加上ROLE_前缀
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + userRole.getName()));
 
         // 返回UserDetails实现类
-        return new User(userName, userInfo.getPwd(), authorities);
+        return new User(userName, userInfo.getPassword(), authorities);
     }
 }
